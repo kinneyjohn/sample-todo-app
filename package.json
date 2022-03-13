@@ -1,12 +1,13 @@
 {
-  "name": "101-app",
+  "name": "sample-todo-app",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "license": "MIT",
   "scripts": {
     "prettify": "prettier -l --write \"**/*.js\"",
     "test": "jest",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon --ignore node_modules/ app-src/server.js",
+    "start": "node app-src/server.js"
   },
   "dependencies": {
     "express": "^4.17.1",
