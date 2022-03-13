@@ -1,1 +1,2 @@
-# sample-todo-app
+# Sample TODO list application
+
