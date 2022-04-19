@@ -1,4 +1,12 @@
-# Ignore local files
-data/
-node_modules/
-package-lock.json
+# nodejs local files
+nodejs-app/data/
+nodejs-app/node_modules/
+nodejs-app/package-lock.json
+
+# python local files
+**/__pycache__
+python-todo/venv
+python-todo/db.sqlite
+python-todo/build/
+python-todo/todo.egg-info/
+**.coverage

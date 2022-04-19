@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+</head>
+
+<body>
+    <div style="margin-top: 50px;" class="ui container">
+        <h1 class="ui center aligned header">{{ details.region }} To Do App</h1>
+
+        <form class="ui form" action="/add" method="post">
+            <div class="field">
+                <label>Task Title</label>
+                <input type="text" name="title" placeholder="Enter Todo..."><br>
+            </div>
+            <button class="ui blue button" type="submit">Add Item</button>
+        </form>
+
+        <hr>
+
+        {% if todo_list %}
+        {% for todo in todo_list %}
+        <div class="ui segment" style="display:grid;grid-template-columns:auto auto;grid-template-rows:auto 50px;">
+            <div style="grid-column:1/span 2;grid-row:1">
+                {% if todo.complete == False %}
+                <p class="ui big header" style="margin:20px">{{ todo.id }} - {{ todo.title }}</p>
+                {% else %}
+                <p class="ui big header" style="margin:20px"><strike>{{ todo.id }} - {{ todo.title }}</strike>
+                <!--<span class="ui green label">Completed</span>--></p>
+                {% endif %}
+            </div>
+
+            <div style="grid-column:1/span 2;grid-row:2">
+                <div style="margin:5px;display:inline">
+                    {% if todo.complete == False %}
+                    <a class="ui blue button" href="/update/{{ todo.id }}" style="width:125px">Complete</a>
+                    {% else %}
+                    <a class="ui green button" href="/update/{{ todo.id }}" style="width:125px">Completed!</a>
+                    {% endif %}
+                </div>
+                <div style="margin:5px;display:inline">
+                    <a class="ui red button" href="/delete/{{ todo.id }}" style="width:125px">Delete</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="ui segment">
+            <p class="ui big header" style="margin:20px;text-align:center">Not tracking any tasks! Add one above!</p>
+        </div>
+        {% endif %}
+
+    </div>
+    {% block footer %}
+    <div class="ui container">
+        <hr style="margin:40px 0px 40px 0px">
+        <div id="footer">
+            <h4 class="ui center aligned header">Hosted By: {{ details.provider }}</h4>
+        </div>
+    </div>
+    {%- endblock %}
+</body>
+
+</html>
